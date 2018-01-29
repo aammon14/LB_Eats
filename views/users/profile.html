@@ -13,12 +13,16 @@
 <body>
     <main>
         <section>
-            Welcome to your profile, {{user.email}}
+            <h1>Welcome to your profile, {{user.email}}</h1>
             <div>
-                <a href="/users/logout">Logout</a>
+                <a href="/restaurants">VIEW LONG BEACH RESTAURANTS</a> 
             </div>
-            <p id="user-data-counter">{{user.counter}}</p>
-            <button id="user-data-counter-button">INCREMENT THE THING!!! NOW AND FOREVER</button>
+            <div>
+                <h3>Your Favorites</h3>
+            </div>
+            <div>
+                <a href="/users/login">Logout</a> 
+            </div>
         </section>
     </main>
 </body>

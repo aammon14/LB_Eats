@@ -79,4 +79,8 @@ router.get(
     }
 );
 
+router.post('/profile', User.addFavoriteMiddleware, (req, res) => {
+    res.render('users/profile', { user: res.locals.userData });
+});
+
 module.exports = router;

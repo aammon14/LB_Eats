@@ -1,4 +1,2 @@
-
-// const restaurantModel = require('../models/restaurants');
-
-// restaurantModel.seedAllRestaurantNames();
+const restaurantsModel = require('../models/restaurants');
+restaurantsModel.seedAllRestaurantsNames();

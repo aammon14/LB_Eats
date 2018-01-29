@@ -5,7 +5,7 @@ const restaurantModel = {};
 
 // Helper function for seeding the restaurant data
 function restaurantsNameSeedStep(restaurantsData) {
-  restaurantsData.results.forEach(restaurants => {
+  restaurantsData.forEach(restaurants => {
     db
       .none("INSERT INTO restaurants (name) VALUES ($1);", [restaurants.name])
       .catch(err => {
@@ -38,19 +38,22 @@ restaurantModel.seedAllRestaurantsNames = function() {
     method: "get",
     url:
       "http://api.yelp.com/v3/businesses/search?term=food&location===LongBeach,ny&limit=50",
-    headers:
-      "Authorization: Bearer mzhNKmiI-vh0HpTj_Pg7TleB36FxRV5Xi-dOFfLZRTZ3ks05RToTxYZwDgLE6j49MXn1_FQrqqAFZIi8zidLewq_BgwppPgzvAyYzrnEwD97normnbviPfqn5TxrWnYx"
+    headers:{
+      Authorization:
+        "Bearer mzhNKmiI-vh0HpTj_Pg7TleB36FxRV5Xi-dOFfLZRTZ3ks05RToTxYZwDgLE6j49MXn1_FQrqqAFZIi8zidLewq_BgwppPgzvAyYzrnEwD97normnbviPfqn5TxrWnYx"
+    }
   })
     .then(response => {
-      restaurantsNameSeedStep(response.data);
+      restaurantsNameSeedStep(response.data.businesses);
     })
     .catch(err => {
       console.log(
         "Error encountered in restaurantModel.seedAllRestaurantNames:",
         err
       );
-    });
+    })
 };
+
 
 restaurantModel.allRestaurants = (req, res, next) => {
   // db
@@ -83,7 +86,7 @@ restaurantModel.restaurantById = (req, res, next) => {
   axios({
     method: "get",
     url:
-      `https://api.yelp.com/v3/businesses/${req.params.restaurantId}`,
+      `https://api.yelp.com/v3/businesses/${id}`,
     headers: {
       Authorization:
         "Bearer mzhNKmiI-vh0HpTj_Pg7TleB36FxRV5Xi-dOFfLZRTZ3ks05RToTxYZwDgLE6j49MXn1_FQrqqAFZIi8zidLewq_BgwppPgzvAyYzrnEwD97normnbviPfqn5TxrWnYx"

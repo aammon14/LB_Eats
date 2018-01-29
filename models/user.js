@@ -43,6 +43,23 @@ userModelObject.findByEmailMiddleware = function findByEmailMiddleware(req, res,
         }).catch(err => console.log('ERROR:', err));
 };
 
+userModelObject.addFavorite = function addFavorite(user_id, restaurant_id) {
+    return db.one(
+        'INSERT INTO restaurants_users (user_id, restaurant_id) VALUES ($1, $2) RETURNING *;',
+        [user_id, restaurant_id]
+    );
+};
 
+userModelObject.addFavoriteMiddleware = function addFavoriteMiddleware(req, res, next) {
+    const user_id = req.body.user_id;
+    const restaurant_id = req.body.restaurant_id;
+    user
+        .addFavorite(user_id, restaurant_id)
+        .then(userData => {
+            res.locals.userData = userData;
+            next();
+        })
+        .catch(err => console.log('ERROR:', err));
+};
 
 module.exports = userModelObject;

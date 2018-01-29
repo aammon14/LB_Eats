@@ -27,7 +27,7 @@ app.use(auth.passportInstance);
 app.use(auth.passportSession);
 
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(cookieParser());

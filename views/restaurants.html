@@ -6,17 +6,18 @@
     <title>Restaurants</title>
   </head>
   <body>
-    <h3>Restaurants</h3>
+    <h3>Restaurants of Long Beach</h3>
       <ul>
         {{#allRestaurantsData}}
         <li>
           <span class="name">
-            <a href="restaurant/{{id}}">
+            <a href="restaurants/{{id}}">
               {{name}}
             </a>
           </span>
         </li>
         {{/allRestaurantsData}}
       </ul>
+      <a href="/users/profile">Back To Profile</a>
   </body>
 </html>

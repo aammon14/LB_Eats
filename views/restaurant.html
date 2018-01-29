@@ -3,10 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Restaurant Info</title>
+    <title>{{restaurant.name}}</title>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/script.js"></script>
   </head>
   <body>
     <h2>Restaurant: {{restaurant.name}}</h2>
+    <input type="hidden" name="name" id="res_name" value="{{restaurant.name}}">
       <p>Category:
         {{#restaurant.categories}}
           {{title}}.
@@ -14,6 +17,9 @@
       <p>Rating: {{restaurant.rating}}</p>
       <p>Price Range: {{restaurant.price}}</p>
       <p>Location: {{restaurant.location.display_address}}</p>
-  </body>
+      <div>
+        <button id="user-favorite">ADD TO FAVORITES</button>
+      </div>  
+      <a href="/restaurants">Back To Restaurants</a>
   </body>
 </html>
