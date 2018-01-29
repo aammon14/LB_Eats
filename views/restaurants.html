@@ -7,6 +7,16 @@
   </head>
   <body>
     <h3>Restaurants</h3>
-
+      <ul>
+        {{#allRestaurantsData}}
+        <li>
+          <span class="name">
+            <a href="restaurant/{{id}}">
+              {{name}}
+            </a>
+          </span>
+        </li>
+        {{/allRestaurantsData}}
+      </ul>
   </body>
 </html>

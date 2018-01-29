@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Restaurant Info</title>
+  </head>
+  <body>
+    <h2>Restaurant: {{restaurant.name}}</h2>
+      <p>Category:
+        {{#restaurant.categories}}
+          {{title}}.
+        {{/restaurant.categories}}</p>
+      <p>Rating: {{restaurant.rating}}</p>
+      <p>Price Range: {{restaurant.price}}</p>
+      <p>Location: {{restaurant.location.display_address}}</p>
+  </body>
+  </body>
+</html>

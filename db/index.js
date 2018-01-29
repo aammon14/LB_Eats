@@ -5,7 +5,7 @@ const pgp = require('pg-promise')();
 const cn = {
     host: 'localhost',
     port: 5432,
-    database: ''
+    database: 'restaurant_list'
 };
 
 const db = pgp(cn);
