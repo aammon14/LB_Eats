@@ -12,4 +12,6 @@ router.get("/:restaurantId", restaurantModel.restaurantById, (req, res) => {
 });
 
 
+
+
 module.exports = router;

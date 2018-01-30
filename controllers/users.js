@@ -2,6 +2,7 @@ const User = require('../models/user');
 const router = require('express').Router();
 const passport = require('passport');
 
+const restaurantsModel = require("../models/restaurants");
 // const controller = require('./controller');
 const auth = require('../services/auth');
 
@@ -79,8 +80,29 @@ router.get(
     }
 );
 
-router.post('/profile', User.addFavoriteMiddleware, (req, res) => {
-    res.render('users/profile', { user: res.locals.userData });
+router.post('/profile',
+    auth.restrict,
+    restaurantsModel.addUserFav, 
+    (req, res, next) => {
+        res.render('users/profile', { userFavData: res.locals.userFavData });
 });
+
+router.get('/favorites',
+    auth.restrict,
+    User.findUserFav,
+    (req, res) => {
+        // res.json(res.locals.favData)
+        res.render('users/favorites', {favData: res.locals.favData});
+})
+
+router.delete(
+    "/favorites/",
+    auth.restrict,
+    restaurantsModel.destroy,
+    (req, res, next) => {
+        // not a lot to send back
+        res.json({});
+    }
+);
 
 module.exports = router;

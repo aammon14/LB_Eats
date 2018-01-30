@@ -10,6 +10,7 @@
   <body>
     <h2>Restaurant: {{restaurant.name}}</h2>
     <input type="hidden" name="name" id="res_name" value="{{restaurant.name}}">
+    <input type="hidden" name="name" id="user_id" value="{{restaurant.id}}">
       <p>Category:
         {{#restaurant.categories}}
           {{title}}.

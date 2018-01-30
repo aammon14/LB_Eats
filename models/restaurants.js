@@ -105,5 +105,60 @@ restaurantModel.restaurantById = (req, res, next) => {
       });
 }
 
+restaurantModel.findFavoriteByUser = (req, res, next) => {
+  db
+    .manyOrNone("SELECT name FROM restaurants JOIN restaurants_users ON restaurants_users.restaurant_id = restaurants.id JOIN users ON users.id = restaurants_users.user_id WHERE user_id = $1;", [req.user.id])
+    .then(result => {
+      res.locals.userFavData = result;
+      next();
+    })
+    .catch(err => {
+      console.log("error encountered in restaurantModel.findFavoriteByUser, error:",
+        err
+      );
+      next(err);
+    });
+}
+
+restaurantModel.addUserFav = (req, res, next) => {
+  const userId = req.user.id;
+  const favName = req.body.name;
+  db
+    .one(
+      "INSERT INTO restaurants_users (user_id, restaurant_name) VALUES ($1, $2) RETURNING id;",
+      [userId, favName]
+    )
+    .then(result => {
+      res.locals.userFavId = result.id;
+      next();
+    })
+    .catch(err => {
+      console.log(
+        "Error encountered in restaurantModel.addUserFav. error:",
+        err
+      );
+      next(err);
+    });
+};
+
+restaurantModel.destroy = (req, res, next) => {
+  const userId = req.body.id;
+  const favName = req.body.name;
+  db
+    .none("DELETE FROM restaurants_users WHERE user_id = $1 AND restaurant_name = $2", [
+      userId,
+      favName
+    ])
+    .then(() => {
+      next();
+    })
+    .catch(err => {
+      console.log(
+        "Error encountered in restaurantModel.destroy. error:",
+        err
+      );
+      next(err);
+    });
+};
 
 module.exports = restaurantModel;

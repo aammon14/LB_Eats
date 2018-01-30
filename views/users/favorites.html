@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/script.js"></script>
+</head>
+
+<body>
+    <h1>Your Favorites</h1>
+    <ul>{{#favData}}
+        <li>{{restaurant_name}} 
+            <input type="hidden" class="user_id" value="{{user_id}}">
+            <button class="delete-favorite" value="{{restaurant_name}}">DELETE
+            </button>
+        </li>
+        {{/favData}}
+    </ul>    
+</body>
+
+</html>

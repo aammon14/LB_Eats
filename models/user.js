@@ -23,11 +23,7 @@ userModelObject.create = function create(user) {
     );
 };
 
-// Here's a tricky part.
-// We need both a middleware _and_ a nonmiddleware version 
-// (nonmiddleware for use in services/auth.js).
 
-// Again, LocalStrategy's interface means it's easiest to return a promise here.
 userModelObject.findByEmail = function findByEmail(email) {
     return db.oneOrNone('SELECT * FROM users WHERE email = $1;', [email]);
 };
@@ -36,7 +32,7 @@ userModelObject.findByEmailMiddleware = function findByEmailMiddleware(req, res,
     console.log('in findByEmailMiddleware');
     const email = req.user.email;
     userModelObject
-        .findByEmail(email) // here we're using the nonmiddleware version above, getting back a promise
+        .findByEmail(email)
         .then((userData) => {
             res.locals.userData = userData;
             next();
@@ -45,8 +41,8 @@ userModelObject.findByEmailMiddleware = function findByEmailMiddleware(req, res,
 
 userModelObject.addFavorite = function addFavorite(user_id, restaurant_id) {
     return db.one(
-        'INSERT INTO restaurants_users (user_id, restaurant_id) VALUES ($1, $2) RETURNING *;',
-        [user_id, restaurant_id]
+        'INSERT INTO restaurants_users (user_id, restaurant_id) VALUES (1, 2) RETURNING *;'
+        // [user_id, restaurant_id]
     );
 };
 
@@ -61,5 +57,25 @@ userModelObject.addFavoriteMiddleware = function addFavoriteMiddleware(req, res,
         })
         .catch(err => console.log('ERROR:', err));
 };
+
+userModelObject.findUserFav = function findUserFav(req, res, next) {
+    const id = req.user.id;
+    db
+    .manyOrNone("SELECT * FROM restaurants_users WHERE user_id = $1", [
+            id
+        ])
+        .then(result => {
+            res.locals.favData = result;
+            next();
+        })
+        .catch(err => {
+            console.log(
+                "Error encountered in userModelObject.findUserFav, error:",
+                err
+            );
+            next(err);
+        });
+};
+
 
 module.exports = userModelObject;
