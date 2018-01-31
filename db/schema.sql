@@ -21,5 +21,6 @@ DROP TABLE IF EXISTS restaurants_users CASCADE;
 CREATE TABLE restaurants_users (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users,
-  restaurant_name VARCHAR REFERENCES restaurants
+  restaurant_name VARCHAR REFERENCES restaurants,
+  current_rating INTEGER
 );

@@ -1,0 +1,41 @@
+body {
+  background-image: url("LBsunset.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Rammetto One', cursive;
+  text-align: center;
+  color: orange;
+}
+
+.users {
+  background: rgba(255,255,255, 0.75);
+  border: 2px solid black;
+  border-radius: 10px;
+  align-content: center;
+  width: 400px;
+  padding: 5px;
+  margin: 0 auto;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.restaurantImg {
+  margin: 5px auto;
+  border: 5px solid white;
+  border-radius: 10px;
+}
+
+.allRestaurants {
+  columns: 3;
+}
+
+button, .button {
+  color: white;
+  background: orange;
+  border: 2px solid white;
+  border-radius: 5px;
+}

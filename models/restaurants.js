@@ -125,7 +125,7 @@ restaurantModel.addUserFav = (req, res, next) => {
   const favName = req.body.name;
   db
     .one(
-      "INSERT INTO restaurants_users (user_id, restaurant_name) VALUES ($1, $2) RETURNING id;",
+      "INSERT INTO restaurants_users (user_id, restaurant_name, current_rating) VALUES ($1, $2, 0) RETURNING id;",
       [userId, favName]
     )
     .then(result => {

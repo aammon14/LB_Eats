@@ -33,14 +33,14 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
-  res.render('main');
+  res.render('users/login');
 });
-
-const restaurantsRouter = require('./controllers/restaurants');
-app.use('/restaurants', restaurantsRouter);
 
 const userRouter = require('./controllers/users.js')
 app.use('/users', userRouter);
+
+const restaurantsRouter = require('./controllers/restaurants');
+app.use('/restaurants', restaurantsRouter);
 
 app.use((err, req, res, next) => {
   console.log('Error encountered:', err);

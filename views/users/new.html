@@ -4,11 +4,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Sign Up</title>
-  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Rammetto+One" rel="stylesheet">
 </head>
 <body>
   <main>
-    <section>
+    <h1>Create A New Account</h1>
+    <div class='users'>
       <form action="/users" method="POST">
         <label for="email">Email</label><br>
         <input id="email" type="text" name="user[email]" placeholder="john.doe@example.com"><br>
@@ -16,7 +18,7 @@
         <input id="password" type="password" name="user[password]" placeholder="P4ssw0rd1234"><br>
         <input type="submit" value="Sign Up">
       </form>
-    </section>
+    </div>
   </main>
 </body>
 </html>

@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{{restaurant.name}}</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Rammetto+One" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/script.js"></script>
   </head>
@@ -15,12 +17,19 @@
         {{#restaurant.categories}}
           {{title}}.
         {{/restaurant.categories}}</p>
-      <p>Rating: {{restaurant.rating}}</p>
+      <p>Average Yelp Rating: {{restaurant.rating}}</p>
       <p>Price Range: {{restaurant.price}}</p>
       <p>Location: {{restaurant.location.display_address}}</p>
+      <p>Hours: {{#restaurant.hours[0].open}}
+          {{{start}}}
+        {{/restaurant.hours[0].open}}
+      </p>
       <div>
-        <button id="user-favorite">ADD TO FAVORITES</button>
+        <button id="user-favorite">ADD TO FAVORITES</button>  
       </div>  
-      <a href="/restaurants">Back To Restaurants</a>
+      <div>
+        <a href="/restaurants">Back To Restaurants</a>
+      </div>
+      <img src="{{restaurant.image_url}}" class="restaurantImg">
   </body>
 </html>

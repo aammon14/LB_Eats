@@ -5,21 +5,32 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>User Profile</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Rammetto+One" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/script.js"></script>
 </head>
 
 <body>
-    <h1>Your Favorites</h1>
-    <ul>{{#favData}}
-        <li>{{restaurant_name}} 
-            <input type="hidden" class="user_id" value="{{user_id}}">
-            <button class="delete-favorite" value="{{restaurant_name}}">DELETE
-            </button>
-        </li>
-        {{/favData}}
-    </ul>    
+    <main>
+    <h1>Your Favorite LB Restaurants</h1>
+        <div class='users'>
+            <ul>{{#favData}}
+                <li>{{restaurant_name}} My Rating:{{current_rating}}
+                    <input type="hidden" class="user_id" value="{{user_id}}">
+                    <button class="increase-rating" value="{{current_rating}}">+
+                    </button>
+                    <button class="decrease-rating" value="{{current_rating}}">-
+                    </button>
+                    <button class="delete-favorite" value="{{restaurant_name}}">DELETE
+                    </button>
+                </li>{{/favData}}
+            </ul>
+        </div>
+        <div>
+                <a href="/users/profile">Back To Profile</a> 
+        </div> 
+    </main>   
 </body>
 
 </html>
