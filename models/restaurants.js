@@ -125,7 +125,7 @@ restaurantModel.addUserFav = (req, res, next) => {
   const favName = req.body.name;
   db
     .one(
-      "INSERT INTO restaurants_users (user_id, restaurant_name, current_rating) VALUES ($1, $2, 0) RETURNING id;",
+      "INSERT INTO restaurants_users (user_id, restaurant_name) VALUES ($1, $2) RETURNING id;",
       [userId, favName]
     )
     .then(result => {
@@ -140,6 +140,27 @@ restaurantModel.addUserFav = (req, res, next) => {
       next(err);
     });
 };
+
+restaurantModel.updateRating = (req, res, next) => {
+  const rating = parseInt(req.body.rating);
+  const userId = req.user.id;
+  const name = req.body.name;
+  console.log("this is req.body:", req.body);
+  db
+    .one("UPDATE restaurants_users SET current_rating = $1 WHERE user_id = $2 AND restaurant_name = $3 RETURNING id;",
+      [rating, userId, name]
+    ).then(data => {
+      res.locals.updatedRating = data.id;
+      next();
+    })
+    .catch(err => {
+      console.log(
+        "Error encountered in restaurantModel.updateRating. error:",
+        err
+      );
+      next(err);
+    });
+}
 
 restaurantModel.destroy = (req, res, next) => {
   const userId = req.body.id;

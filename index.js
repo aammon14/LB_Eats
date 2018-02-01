@@ -5,7 +5,7 @@ const mustacheExpress = require('mustache-express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
-
+const dotenv = require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,6 +21,14 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
+var moment = require('moment');
+//console.log(moment('7').format('dddd'));
+
+app.get('/day', (req, res) => {
+  const dayNum = req.query.dayNum;
+  res.json(moment().day(dayNum).format('dddd'));
+});
 
 const auth = require('./services/auth.js');
 app.use(auth.passportInstance);

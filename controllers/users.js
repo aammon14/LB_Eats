@@ -87,13 +87,23 @@ router.post('/profile',
         res.render('users/profile', { userFavData: res.locals.userFavData });
 });
 
-router.get('/favorites',
+router.get(
+    '/favorites',
     auth.restrict,
     User.findUserFav,
     (req, res) => {
         // res.json(res.locals.favData)
         res.render('users/favorites', {favData: res.locals.favData});
-})
+});
+
+router.put(
+    "/favorites",
+    auth.restrict,
+    restaurantsModel.updateRating,
+    (req, res, next) => {
+        res.send({ updatedRating: res.locals.updatedRating });
+    }
+);
 
 router.delete(
     "/favorites/",

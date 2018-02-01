@@ -16,15 +16,26 @@
     <h1>Your Favorite LB Restaurants</h1>
         <div class='users'>
             <ul>{{#favData}}
-                <li>{{restaurant_name}} My Rating:{{current_rating}}
+                <form class="update-rating">
+                <li class="restaurant_name">{{restaurant_name}} -- My Rating:{{current_rating}} --
                     <input type="hidden" class="user_id" value="{{user_id}}">
-                    <button class="increase-rating" value="{{current_rating}}">+
-                    </button>
-                    <button class="decrease-rating" value="{{current_rating}}">-
-                    </button>
+                    <!-- <input type="hidden" class="rating" value="{{current_rating}}"> -->
+                    <input type="hidden" class="name" name="{{restaurant_name}}" value="{{restaurant_name}}">
+                    
+                    <label >Update my rating
+                        <select class="rating" name="rating">
+                            <option value="">Select One …</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <input type="submit" name="submit">
+                    </label>
                     <button class="delete-favorite" value="{{restaurant_name}}">DELETE
                     </button>
-                </li>{{/favData}}
+                </li></form>{{/favData}}
             </ul>
         </div>
         <div>

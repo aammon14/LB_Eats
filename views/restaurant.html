@@ -16,13 +16,19 @@
       <p>Category:
         {{#restaurant.categories}}
           {{title}}.
-        {{/restaurant.categories}}</p>
+        {{/restaurant.categories}}
+      </p>
       <p>Average Yelp Rating: {{restaurant.rating}}</p>
       <p>Price Range: {{restaurant.price}}</p>
       <p>Location: {{restaurant.location.display_address}}</p>
-      <p>Hours: {{#restaurant.hours[0].open}}
-          {{{start}}}
-        {{/restaurant.hours[0].open}}
+      <p class="hours">Hours: 
+        {{#restaurant.hours}}
+          {{#open}}
+          <div id="a{{day}}"> {{day}}:</div>
+            {{start}} - {{end}} <br />
+            <input type="hidden" value="{{day}}" class="dayNum">
+          {{/open}}
+        {{/restaurant.hours}}
       </p>
       <div>
         <button id="user-favorite">ADD TO FAVORITES</button>  
