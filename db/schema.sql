@@ -13,7 +13,6 @@ DROP TABLE IF EXISTS restaurants CASCADE;
 CREATE TABLE restaurants (
   id SERIAL,
   name VARCHAR(255) PRIMARY KEY,
-  categories VARCHAR(255)
 );
 
 DROP TABLE IF EXISTS restaurants_users CASCADE;

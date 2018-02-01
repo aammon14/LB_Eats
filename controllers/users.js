@@ -1,16 +1,16 @@
+//Authorization methods and middleware are based on the example we were given in class
 const User = require('../models/user');
 const router = require('express').Router();
 const passport = require('passport');
 
 const restaurantsModel = require("../models/restaurants");
-// const controller = require('./controller');
 const auth = require('../services/auth');
 
 // ----------------------------------------
 // users index
- router.get ('/', (req, res, next) => {
+router.get ('/', (req, res, next) => {
     res.redirect('users/profile')
- })
+})
 
 router.post(
     '/',
@@ -31,28 +31,22 @@ router.post(
 
 // ----------------------------------------
 // register new user
-
 router.get('/new', (req, res) => {
     res.render('users/new');
 });
-
 // ----------------------------------------
 // user logout
-
 router.get('/logout', (req, res) => {
     // passport put this method on req for us
     req.logout();
     // redirect back to index page
     res.redirect('/');
 });
-
 // ----------------------------------------
 // user login
-
 router.get('/login', (req, res) => {
     res.render('users/login');
 });
-
 // passport.authenticate will _build_ middleware for us
 // based on the 'local-login' strategy we registered with
 // passport in auth.js
@@ -92,7 +86,6 @@ router.get(
     auth.restrict,
     User.findUserFav,
     (req, res) => {
-        // res.json(res.locals.favData)
         res.render('users/favorites', {favData: res.locals.favData});
 });
 

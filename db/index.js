@@ -8,6 +8,6 @@ const cn = {
     database: 'restaurant_list'
 };
 
-const db = pgp(cn);
+const db = pgp(process.env.DATABASE_URL || cn);
 
 module.exports = db;

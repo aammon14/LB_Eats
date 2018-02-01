@@ -40,7 +40,7 @@ restaurantModel.seedAllRestaurantsNames = function() {
       "http://api.yelp.com/v3/businesses/search?term=food&location===LongBeach,ny&limit=50",
     headers:{
       Authorization:
-        "Bearer mzhNKmiI-vh0HpTj_Pg7TleB36FxRV5Xi-dOFfLZRTZ3ks05RToTxYZwDgLE6j49MXn1_FQrqqAFZIi8zidLewq_BgwppPgzvAyYzrnEwD97normnbviPfqn5TxrWnYx"
+        `Bearer ${process.env.Andrews_API_key}`
     }
   })
     .then(response => {
@@ -64,7 +64,7 @@ restaurantModel.allRestaurants = (req, res, next) => {
       "http://api.yelp.com/v3/businesses/search?term=food&location===LongBeach,ny&limit=50",
     headers: {
       Authorization:
-        "Bearer mzhNKmiI-vh0HpTj_Pg7TleB36FxRV5Xi-dOFfLZRTZ3ks05RToTxYZwDgLE6j49MXn1_FQrqqAFZIi8zidLewq_BgwppPgzvAyYzrnEwD97normnbviPfqn5TxrWnYx"
+        `Bearer ${process.env.Andrews_API_key}`
     }
   })
     .then(response => {
@@ -89,7 +89,7 @@ restaurantModel.restaurantById = (req, res, next) => {
       `https://api.yelp.com/v3/businesses/${id}`,
     headers: {
       Authorization:
-        "Bearer mzhNKmiI-vh0HpTj_Pg7TleB36FxRV5Xi-dOFfLZRTZ3ks05RToTxYZwDgLE6j49MXn1_FQrqqAFZIi8zidLewq_BgwppPgzvAyYzrnEwD97normnbviPfqn5TxrWnYx"
+        `Bearer ${process.env.Andrews_API_key}`
     }
   })
       .then(response => {

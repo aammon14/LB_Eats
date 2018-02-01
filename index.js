@@ -1,11 +1,11 @@
+const dotenv = require("dotenv").config();
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const mustacheExpress = require('mustache-express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-
-const dotenv = require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,13 +22,7 @@ app.use(session({
     saveUninitialized: true
 }));
 
-var moment = require('moment');
-//console.log(moment('7').format('dddd'));
 
-app.get('/day', (req, res) => {
-  const dayNum = req.query.dayNum;
-  res.json(moment().day(dayNum).format('dddd'));
-});
 
 const auth = require('./services/auth.js');
 app.use(auth.passportInstance);
@@ -49,6 +43,14 @@ app.use('/users', userRouter);
 
 const restaurantsRouter = require('./controllers/restaurants');
 app.use('/restaurants', restaurantsRouter);
+
+var moment = require('moment');
+//console.log(moment('7').format('dddd'));
+
+app.get('/day', (req, res) => {
+  const dayNum = req.query.dayNum;
+  res.json(moment().day(dayNum).format('dddd'));
+});
 
 app.use((err, req, res, next) => {
   console.log('Error encountered:', err);

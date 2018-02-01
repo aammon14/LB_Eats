@@ -15,7 +15,6 @@ $(document).ready(function() {
       error: function(xhr, status, error) {}
     });
   });
-
   const $updateRatingDropDown = $(".update-rating");
   $updateRatingDropDown.submit(e => {
     e.preventDefault();
@@ -24,7 +23,7 @@ $(document).ready(function() {
     console.log("this is rating in ajax call:", rating);
     //e.target.getAttribute("value");
     var id = $(".user_id").val();
-    var name = $(".name").val();
+    var name = $(`.name`).val();
     //$(".restaurant_name").val();
     console.log(rating, id, name);
     data = { rating: rating, id: id, name: name };
@@ -39,7 +38,6 @@ $(document).ready(function() {
       error: function(xhr, status, error) {}
     });
   });
-
   const $deleteFavButtons = $(".delete-favorite");
   $deleteFavButtons.click(e => {
     e.preventDefault();
@@ -58,50 +56,18 @@ $(document).ready(function() {
       error: function(xhr, status, error) {}
     });
   });
-
-  // const $hours = $(".hours");
-  // $.ajax({
-  //   url: "/day",
-  //   data: data,
-  //   type: "GET",
-  //   success: function(data) {
-  //     window.location.href = "/day";
-  //   },
-  //   error: function(xhr, status, error) {};
-  // });
-
-
-  $('.dayNum').each(function(el) {
-      $.ajax({
+  $(".dayNum").each(function(el) {
+    $.ajax({
       url: `/day`,
       data: {
-        dayNum: el,
+        dayNum: el
       },
-      method: 'GET',
+      method: "GET",
       success: function(response) {
-        console.log('result:', response);
-        $( `#a${el}`).text(response);
+        console.log("result:", response);
+        $(`#a${el}`).text(response);
       },
-      error: function(xhr, status, error) {},
+      error: function(xhr, status, error) {}
     });
-  })
-    // for (var i = 0; i < 7 ; i++) {
-    //   days.push($('.dayNum')[i].val());
-    // }
-    // console.log(days);
-    // //  $('.dayNum').val();
-    // console.log(days);
-    // $.ajax({
-    //   url: `/day`,
-    //   data: {
-    //     day: days,
-    //   },
-    //   method: 'GET',
-    //   success: function(response) {
-    //     console.log('result:', response);
-    //   },
-    //   error: function(xhr, status, error) {},
-    // });
-  
+  });
 });
-
