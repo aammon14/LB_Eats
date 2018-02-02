@@ -22,8 +22,6 @@ app.use(session({
     saveUninitialized: true
 }));
 
-
-
 const auth = require('./services/auth.js');
 app.use(auth.passportInstance);
 app.use(auth.passportSession);

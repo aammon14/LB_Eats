@@ -1,4 +1,4 @@
-\c restaurant_list
+-- \c restaurant_list
 
 DROP TABLE IF EXISTS users CASCADE;
 
@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS restaurants CASCADE;
 
 CREATE TABLE restaurants (
   id SERIAL,
-  name VARCHAR(255) PRIMARY KEY,
+  name VARCHAR(255) PRIMARY KEY
 );
 
 DROP TABLE IF EXISTS restaurants_users CASCADE;
